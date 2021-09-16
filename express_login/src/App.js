@@ -4,16 +4,20 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Register from "./views/Register";
 import Login from "./views/Login";
 import Admin from "./views/Admin";
+// Import context
+// import UserContext from "./context/UserContext";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <Switch>
+      {/*       <UserContext>
+ */}        <Switch>
         <Route exact path="/register" component={Register} />
         <Route exact path="/" component={Login} />
         <Route exact path="/admin" component={Admin} />
       </Switch>
-    </BrowserRouter>
+      {/*       </UserContext>
+ */}    </BrowserRouter>
   );
 };
 
