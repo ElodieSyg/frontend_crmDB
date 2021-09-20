@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Navbar from "../components/Navbar";
 // Import CSS
 import "./Login.modules.css";
+import Axios from "axios";
 
 const Login = () => {
     const [email, setEmail] = useState("");
@@ -16,6 +17,7 @@ const Login = () => {
     // Pattern
     const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
     const passwordRegex = new RegExp(/[0-9a-zA-Z]{8,}/);
+
     // useHistory
     const history = useHistory();
 
@@ -42,8 +44,13 @@ const Login = () => {
     function handleClickLogin() {
         if (emailRegex.test(email) && passwordRegex.test(password)) {
             const fetchDatabase = async () => {
-                // faire la requête pour authoriser la connexion au serveur 
+                const res = await Axios.get({
+                    method: "post",
+                    url: "https://git.heroku.com/crmdb-konexio.git/login",
+                });
+                console.log(res);
             };
+            fetchDatabase()
             history.push("/admin");
         };
     };

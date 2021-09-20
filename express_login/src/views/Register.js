@@ -54,7 +54,7 @@ const Register = () => {
         <div>
             <Navbar />
             <div className="container">
-                {switchRender}
+                {switchRender()}
             </div>
         </div>
     );
