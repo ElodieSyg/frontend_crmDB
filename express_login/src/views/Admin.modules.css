@@ -1,0 +1,17 @@
+.admin-container {
+    display: flex;
+}
+
+.connected-container {
+    flex: 1;
+    height: 100vh;
+    margin: 1rem;
+    background-color: rgb(1, 100, 100);
+}
+
+.info-container {
+    flex: 2;
+    height: 100vh;
+    margin: 1rem;
+    background-color: rgb(1, 100, 100);
+}

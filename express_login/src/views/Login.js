@@ -9,6 +9,7 @@ import Axios from "axios";
 const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         console.log(email, password)
@@ -41,29 +42,34 @@ const Login = () => {
         };
     };
 
-    function handleClickLogin() {
+    function handleClickLogin(e) {
+        e.preventDefault();
+
         if (emailRegex.test(email) && passwordRegex.test(password)) {
             const fetchDatabase = async () => {
-                const res = await Axios.get({
-                    method: "post",
-                    url: "https://git.heroku.com/crmdb-konexio.git/login",
-                });
+                const res = await Axios.post(`https://crmdb-konexio.herokuapp.com/login`, { email, password })  // email, password = body reçu coté back
                 console.log(res);
+
+                if (res.data.message === "Here is your cookie for subsequent requests !") {
+                    history.push("/admin")
+                } else {
+                    console.log("Error")
+                    setError(res.data.message)
+                };
             };
             fetchDatabase()
-            history.push("/admin");
         };
     };
 
     return (
         <div>
             <div className="container">
-                <div className="line">
+                <div>
                     <h1 className="text-align">Customer Relationship Management</h1>
                 </div>
                 <form className="login-container">
                     <div className="form-flexbox">
-                        <label for="email" className="white-text">Email</label>
+                        <label htmlFor="email" className="white-text">Email</label>
                         <input
                             type="text"
                             id="email"
@@ -71,7 +77,7 @@ const Login = () => {
                             onChange={checkEmail}>
                         </input>
 
-                        <label for="password" className="white-text">Password</label>
+                        <label htmlFor="password" className="white-text">Password</label>
                         <input
                             type="password"
                             id="password"
@@ -81,6 +87,7 @@ const Login = () => {
                     </div>
 
                     <div className="btn-flexbox">
+                        {error && <p>{error}</p>}
                         <button className="margin-b1 btn-style" onClick={handleClickLogin}>L O G I N</button>
                         <Link to="/register" className="link-register">Create an account</Link>
                     </div>
