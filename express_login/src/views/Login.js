@@ -1,7 +1,5 @@
 import { Link, useHistory } from "react-router-dom";
-// Import components
 import { useState, useEffect } from "react";
-import Navbar from "../components/Navbar";
 // Import CSS
 import "./Login.modules.css";
 import Axios from "axios";

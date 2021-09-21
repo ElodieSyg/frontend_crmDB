@@ -11,11 +11,8 @@ const Admin = () => {
 
     useEffect(() => {
         const fetchDatabase = async () => {
-            const res = await Axios.get({
-                url: `https://git.heroku.com/crmdb-konexio.git/contacts`,
-            });
-            setData(res)
-            console.log(data)
+            const res = await Axios.get(`https://crmdb-konexio.herokuapp.com/contacts`);
+            console.log(res)
         }
         fetchDatabase();
     }, []);
