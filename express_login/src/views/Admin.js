@@ -12,7 +12,7 @@ const Admin = () => {
     useEffect(() => {
         const fetchDatabase = async () => {
             const res = await Axios.get(`https://crmdb-konexio.herokuapp.com/contacts`);
-            console.log(res)
+            //            console.log(res)
         }
         fetchDatabase();
     }, []);

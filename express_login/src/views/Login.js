@@ -10,8 +10,8 @@ const Login = () => {
     const [error, setError] = useState(null);
 
     useEffect(() => {
-        console.log(email, password)
-    }, [email, password])
+        console.log(error);
+    }, [error]);
 
     // Pattern
     const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
@@ -45,8 +45,7 @@ const Login = () => {
 
         if (emailRegex.test(email) && passwordRegex.test(password)) {
             const fetchDatabase = async () => {
-                const res = await Axios.post(`https://crmdb-konexio.herokuapp.com/login`, { email, password })  // email, password = body reçu coté back
-                console.log(res);
+                const res = await Axios.post(`https://crmdb-konexio.herokuapp.com/login`, { withCredentials: true }, { email, password })  // email, password = body reçu coté back
 
                 if (res.data.message === "Here is your cookie for subsequent requests !") {
                     history.push("/admin")
