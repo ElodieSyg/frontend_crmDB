@@ -6,12 +6,10 @@ import Axios from "axios";
 
 const Login = () => {
     const [email, setEmail] = useState("");
+    const [isEmailValid, setIsEmailValid] = useState(false);
     const [password, setPassword] = useState("");
+    const [isPasswordValid, setIsPasswordValid] = useState(false);
     const [error, setError] = useState(null);
-
-    useEffect(() => {
-        console.log(error);
-    }, [error]);
 
     // Pattern
     const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
@@ -21,20 +19,22 @@ const Login = () => {
     const history = useHistory();
 
     function checkEmail(e) {
-        const permEmail = e.target.value;
+        setEmail(e.target.value);
 
-        if (emailRegex.test(permEmail)) {
-            setEmail(e.target.value);
+        if (emailRegex.test(e.target.value)) {
+            console.log("Email valid");
+            setIsEmailValid(true);
         } else {
             console.log("Invalid email or password");
         };
     };
 
     function checkPassword(e) {
-        const permPassword = e.target.value;
+        setPassword(e.target.value);
 
-        if (passwordRegex.test(permPassword)) {
-            setPassword(e.target.value)
+        if (passwordRegex.test(e.target.value)) {
+            console.log("Email valid");
+            setIsPasswordValid(true)
         } else {
             console.log("Invalid email or password");
         };
@@ -43,15 +43,21 @@ const Login = () => {
     function handleClickLogin(e) {
         e.preventDefault();
 
-        if (emailRegex.test(email) && passwordRegex.test(password)) {
-            const fetchDatabase = async () => {
-                const res = await Axios.post(`https://crmdb-konexio.herokuapp.com/login`, { withCredentials: true }, { email, password })  // email, password = body reçu coté back
+        if (isEmailValid && isPasswordValid) {
+            console.log("handleclick")
 
-                if (res.data.message === "Here is your cookie for subsequent requests !") {
+            const fetchDatabase = async () => {
+                const res = await Axios.post(
+                    `http://localhost:3000/login`,
+                    { email, password },
+                    { withCredentials: true },
+                );
+
+                console.log(res)
+                if (res.data.status === "Sucess") {
                     history.push("/admin")
                 } else {
-                    console.log("Error")
-                    setError(res.data.message)
+                    return setError("Invalid token")
                 };
             };
             fetchDatabase()

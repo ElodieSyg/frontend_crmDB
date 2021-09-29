@@ -1,63 +1,84 @@
-import { useState, useEffect } from "react";
-// Import components
-import Navbar from "../components/Navbar";
+/* import { useState } from "react";
+import { useHistory } from "react-router";
 // Import CSS
 import "./Register.modules.css";
+// Import Axios
+import Axios from "axios";
+import { useEffect } from "react/cjs/react.development";
 
 const Register = () => {
-    const [activeTab, setActiveTab] = useState("firstStep");
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState(null);
+
+    const history = useHistory();
+
+    // Pattern
+    const emailRegex = new RegExp(/^[a-zA-Z0-9.!#$%&'*+=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/);
+    const passwordRegex = new RegExp(/[0-9a-zA-Z]{8,}/);
 
     useEffect(() => {
-        console.log(activeTab);
-    }, [activeTab]);
+        console.log("useEffect", email)
+    }, [email]);
 
-    function switchRender() {
-        if (activeTab === "firstStep") {
-            firstStepRender();
+    function handleChangeRegister(e) {
+        const { permEmail, permPassword, permConfirmPassword } = e.target.value;
+
+        if (emailRegex.test(email) && passwordRegex.test(password) && password === permConfirmPassword) {
+            setEmail(permEmail);
+            setPassword(permPassword);
+        } else {
+            setError("Invalid email or password");
+            console.log(error);
+        }
+    };
+
+    function handleClickCreateAccount() {
+        const fetchDatabase = async () => {
+            const res = await Axios.post(
+                `http://localhost:3000/register`,
+                { email, password },
+                { withCredentials: true },
+            );
+
+            console.log(res)
+            if (res.data.status === "Sucess") {
+                history.push("/admin")
+            } else {
+                return error;
+            };
         };
-
-        if (activeTab === "secondStep") {
-            secondStepRender();
-        };
+        fetchDatabase();
     };
 
-    const firstStepRender = () => {
-        return (
-            <div>
-                <h1>Personnal informations</h1>
-                <label id="name">Name</label>
-                <input type="text" for="name"></input>
-            </div>
-        );
-    };
-
-    const secondStepRender = async () => {
-        await setActiveTab("stepTwo");
-
-        return (
-            <div>
-                <h1>Connection informations</h1>
-                <form>
-                    <label id="email">Email</label>
-                    <input type="text" for="email"></input>
-
-                    <label id="password">Password</label>
-                    <input type="text" for="password"></input>
-
-                    <label id="confirm-password">Please, confirm your password</label>
-                    <input type="text" for="confirm-password"></input>
-                </form>
-            </div>
-        );
-    };
     return (
         <div>
-            <Navbar />
             <div className="container">
-                {switchRender()}
+                <label htmlFor="name">Email</label>
+                <input
+                    type="text"
+                    id="name"
+                    onChange={handleChangeRegister}>
+                </input>
+
+                <label htmlFor="email">Password</label>
+                <input
+                    type="password"
+                    id="email"
+                    onChange={handleChangeRegister}>
+                </input>
+
+                <label htmlFor="email">Confirm your password</label>
+                <input
+                    type="password"
+                    id="email"
+                    onChange={handleChangeRegister}>
+                </input>
+
+                <button onClick={handleClickCreateAccount}>Create your account</button>
             </div>
         </div>
     );
 };
 
-export default Register;
+export default Register; */
