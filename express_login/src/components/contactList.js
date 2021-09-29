@@ -37,11 +37,15 @@ const ContactList = () => {
                 { name, email, description, category },
                 { withCredentials: true },
             );
-
-            console.log(res)
+            console.log(res);
+            setData(prevState => [...prevState, res.data.data]);
         };
         fetchDatabase();
     };
+
+    function handleClickContact() {
+
+    }
 
     function saveName(e) {
         setName(e.target.value);
@@ -70,17 +74,23 @@ const ContactList = () => {
             </div>
 
             <h3 className="title-admin">Contact list</h3>
-            {data.map(contact => (
-                <div className="contact-container" key={uuidv4()}>
-                    <div>
-                        <p>{contact.name}</p>
-                        <p>{contact.email}</p>
+
+            <div className="scroll-container">
+                {data.map(contact => (
+                    <div className="contact-container" key={uuidv4()}>
+                        <div>
+                            <p>{contact.name}</p>
+                            <p>{contact.email}</p>
+                        </div>
+                        <div>
+                            <button
+                                className="btn-style"
+                                onClick={handleClickContact}>More info
+                            </button>
+                        </div>
                     </div>
-                    <div>
-                        <button className="btn-style">More info</button>
-                    </div>
-                </div>
-            ))}
+                ))}
+            </div>
 
             <div>
                 <h3 className="title-admin">Add a new contact</h3>
@@ -114,7 +124,7 @@ const ContactList = () => {
                         className="margin-ins"
                     ></input>
 
-                    <button className="btn-style" onClick={addContact}>Add to my list</button>
+                    <button className="btn-style margin-ins" onClick={addContact}>Add to my list</button>
                 </div>
             </div>
         </div >
