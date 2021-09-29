@@ -1,0 +1,44 @@
+.connected-container {
+    flex: 1;
+    height: 100%;
+    margin: 1rem;
+    background-color: white;
+}
+
+.counter-contact {
+    margin: 1rem;
+    height: 5rem;
+    background-color: rgb(0, 174, 255);
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+}
+
+.title-admin {
+    color: #313c52;
+    margin: 1rem;
+}
+
+.new_contact-section {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    border: 1px solid rgba(128, 128, 128, 0.466);
+    padding: 1rem;
+}
+
+.contact-container {
+    margin: 1rem;
+    border: 1px solid rgba(128, 128, 128, 0.466);
+    padding: 1rem;
+}
+
+.contact-text {
+    color: #08162a;
+}
+
+.margin-ins {
+    margin: 0.3rem 0rem 0.3rem 0rem;
+}

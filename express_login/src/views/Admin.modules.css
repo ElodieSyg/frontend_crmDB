@@ -1,34 +1,14 @@
 html {
-    background-color: #0a1c34;
+    background-color: rgb(226, 226, 224);
 }
 
 .admin-container {
     display: flex;
 }
 
-.connected-container {
-    flex: 1;
-    height: 100vh;
-    margin: 1rem;
-    background-color: white;
-    border: 5px solid #313c52;
-}
-
 .info-container {
     flex: 2;
     height: 100vh;
     margin: 1rem;
-    background-color: rgb(1, 100, 100);
-}
-
-.contact-container {
-    margin: 1rem;
-    border: 1px solid rgba(128, 128, 128, 0.466);
-    padding: 1rem;
-}
-
-.title-admin {
-    text-align: center;
-    color: #313c52;
-    margin: 1rem;
+    background-color: white;
 }

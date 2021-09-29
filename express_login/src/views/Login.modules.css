@@ -6,10 +6,11 @@
 
 .text-align {
     text-align: center;
-    color: #313c52;
+    color: white;
     display: flex;
     justify-content: center;
     align-items: center;    
+    margin-top: 3rem; 
 }
 
 .login-container {
@@ -28,21 +29,17 @@
 }
 
 .white-text {
-    color: #313c52;    
+    color: white;    
     margin: 1rem 0rem 1rem 0rem;
 }
 
 .link-register {
     text-decoration: none;
-    color: #313c52;
-}
-
-.link-register:hover {
-    color: #313c52;
+    color: white;
 }
 
 .title-text {
-    color: #313c52;
+    color: white;
     text-align: center;
     margin-bottom: 1.5rem;
 }
